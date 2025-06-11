@@ -67,7 +67,7 @@ def submit():
 
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete_sighting(id):
-    # delete a sighting by its id
+    # delete a sighting by clicking button on far right
     sighting = Sighting.query.get_or_404(id)
     db.session.delete(sighting)
     db.session.commit()

@@ -1,11 +1,9 @@
-# models.py
-
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 db = SQLAlchemy()
-pst_tz = ZoneInfo('America/Los_Angeles')  # pst timezone
+pst_tz = ZoneInfo('America/Los_Angeles')  # pst timezone <- la
 
 # model for storing animal sightings
 class Sighting(db.Model):
