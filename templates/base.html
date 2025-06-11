@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WildMap</title>
+  <!-- load bootstrap css -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <!-- clickable logo back to main page -->
+    <a class="navbar-brand" href="{{ url_for('index') }}">WildMap</a>
+    <!-- button to open report form -->
+    <a class="btn btn-primary" href="{{ url_for('submit') }}">Report Sighting</a>
+  </nav>
+
+  <!-- main content area -->
+  <div class="container my-4">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

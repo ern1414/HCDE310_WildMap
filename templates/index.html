@@ -1,0 +1,46 @@
+{# templates/index.html #}
+{% extends "base.html" %}
+{% block content %}
+
+<h2>UW Sighting Database</h2>
+
+<!-- table of all sightings -->
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th>Description</th>
+      <th>Species</th>
+      <th>Time Spotted</th>
+      <th>Location</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in sightings %}
+    <tr>
+      <td>{{ s.description }}</td>
+      <td>{{ s.species }}</td>
+      <td>{{ s.time_spotted.strftime('%Y-%m-%d %I:%M:%S %p') }}</td>
+      <td>{{ s.location }}</td>
+      <td>
+        <!-- form to delete this row -->
+        <form
+          action="{{ url_for('delete_sighting', id=s.id) }}"
+          method="post"
+          style="display:inline"
+          onsubmit="return confirm('delete this sighting?');"
+        >
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- folium map embed -->
+<div style="height: 400px;">
+  {{ map_html|safe }}
+</div>
+
+{% endblock %}

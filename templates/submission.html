@@ -1,0 +1,67 @@
+{# templates/submission.html #}
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  /* adjust folium map wrapper height */
+  #picker-map > div > div {
+    padding-bottom: 0 !important;
+    height: 400px !important;
+  }
+
+  /* style the form container */
+  #sighting-form {
+    background-color: #d9c1f3;
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 600px;
+  }
+  #sighting-form input,
+  #sighting-form button {
+    margin-top: 0.5rem;
+    display: block;
+    width: 100%;
+  }
+</style>
+
+<h2>Animal Sighting Form</h2>
+<p>Click on the map to get latitude &amp; longitude, then paste into the form below.</p>
+
+<!-- folium pick-a-point map -->
+<div id="picker-map" class="mb-3">
+  {{ map_html|safe }}
+</div>
+
+<!-- form to submit a new sighting -->
+<form id="sighting-form" method="post">
+  <div class="form-group">
+    <label>Description</label>
+    <input class="form-control" name="description" required>
+  </div>
+  <div class="form-group">
+    <label>Species</label>
+    <input class="form-control" name="species" required>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Latitude</label>
+      <input class="form-control" name="latitude" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Longitude</label>
+      <input class="form-control" name="longitude" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Location Name</label>
+    <input class="form-control" name="location" required>
+  </div>
+  <button type="submit" class="btn btn-light">Submit</button>
+</form>
+
+<p class="text-muted small">
+  <!-- note: clicking the map shows coords -->
+  When you click the map, a popup shows the coordinates.
+</p>
+
+{% endblock %}
